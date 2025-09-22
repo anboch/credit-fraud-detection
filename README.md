@@ -4,7 +4,7 @@ This repository presents a comprehensive, production-ready solution for detectin
 
 ## https://credit-fraud-detection-2eezbh5cuipaatpsqqdpkg.streamlit.app/
 
-![alt text](https://github.com/anboch/credit-fraud-detection/raw/main/readme_assets/streamlit_demo.gif)
+![Streamlit App Demo GIF](https://github.com/anboch/credit-fraud-detection/blob/2353641cabcf3d1beff0b5e82aecb43cbd4e5a58/readme_assets/gif_demo.gif)
 
 ## Strategic summary
 
@@ -31,11 +31,11 @@ This project stands out by focusing on the practical and strategic aspects of th
 ### Strategic EDA: 
 The analysis went beyond surface-level plots to uncover actionable insights:
 
--Fraudulent transactions are decoupled from human circadian rhythms, peaking when legitimate activity is lowest.
+`-` Fraudulent transactions are decoupled from human circadian rhythms, peaking when legitimate activity is lowest.
 
--Fraud exhibits a dual monetary tactic: a high volume of low-value "card testing" transactions and a smaller number of high-value "cash-out" events.
+`-` Fraud exhibits a dual monetary tactic: a high volume of low-value "card testing" transactions and a smaller number of high-value "cash-out" events.
 
--The feature space contains non-linear, separable clusters of fraud, justifying the choice of a tree-based model over linear alternatives.
+`-` The feature space contains non-linear, separable clusters of fraud, justifying the choice of a tree-based model over linear alternatives.
 
 ## Technical workflow
 
@@ -47,13 +47,13 @@ The project follows a structured, end-to-end machine learning workflow:
 
 ### Modeling & Optimization (02_MODEL.ipynb):
 
--Establish a robust baseline using Logistic Regression.
+`-` Establish a robust baseline using Logistic Regression.
 
--Develop and tune an XGBoost model using Optuna, focusing on AUPRC.
+`-` Develop and tune an XGBoost model using Optuna, focusing on AUPRC.
 
--Conduct a cost-benefit analysis to determine the optimal business threshold.
+`-` Conduct a cost-benefit analysis to determine the optimal business threshold.
 
--Perform a robustness check by removing the most critical feature.
+`-` Perform a robustness check by removing the most critical feature.
 
 ### Deployment (app.py):
 
@@ -63,22 +63,20 @@ Serialize the final model, pre-processing objects, and feature lists using jobli
 
 ### Insights from EDA:
 
-The exploratory analysis confirmed that fraud is not random noise but a pattern that can be learned. The most powerful signals were found in the anonymized PCA features, particularly V14, V4, and V12. The scatter plot below illustrates how fraudulent transactions form a distinct, separable cluster, validating the choice of a non-linear model.
+The exploratory analysis confirmed that fraud is not random noise but a pattern that can be learned. The most powerful signals were found in the anonymized PCA features, particularly V14, V4, and V12. The scatter plot below illustrates an example of how fraudulent transactions form a distinct, separable cluster with certain features, validating the choice of a non-linear model.
 
-![alt text](https://github.com/anboch/credit-fraud-detection/raw/main/readme_assets/fraud_footprint.png)
+![Fraud footprint](https://github.com/anboch/credit-fraud-detection/blob/2353641cabcf3d1beff0b5e82aecb43cbd4e5a58/readme_assets/fraud_footprint.png)
 
 ### From metric to impact: Cost-Sensitive thresholding
 
 A model's value is in its decisions. While the F1-score is a balanced metric, it treats false positives and false negatives equally. In fraud detection, a missed fraud (False Negative) is often far more costly than a false alarm (False Positive).
-By assigning a hypothetical administrative cost of €10 to each FP and using the actual transaction amount for each FN, we can calculate the net savings at every possible probability threshold. The analysis revealed that a threshold of 0.12 maximizes savings, a stark contrast to the F1-optimal threshold. This insight is critical for deploying the model in a real-world financial context.
+By assigning a hypothetical administrative cost of €10 to each FP and using the actual transaction amount for each FN, we can calculate the net savings at every possible probability threshold. The analysis revealed that a threshold of 0.12 maximizes savings, a stark contrast to the F1-optimal threshold (near 1). This insight is critical for deploying the model in a real-world financial context.
 
-![alt text](https://github.com/anboch/credit-fraud-detection/raw/main/readme_assets/net_savings.png)
+![Compare threshold](https://github.com/anboch/credit-fraud-detection/blob/2353641cabcf3d1beff0b5e82aecb43cbd4e5a58/readme_assets/compare_thresholds.png)
 
 ## Live demo usage
 
-The final model is deployed as a live Streamlit application. You can interact with it here:
-
-https://credit-fraud-detection-2eezbh5cuipaatpsqqdpkg.streamlit.app/
+The final model is deployed as a live Streamlit application (URL showed before)
 
 The interface allows you to input transaction details for the most impactful features. The model then predicts the probability of the transaction being fraudulent, using the business-optimized threshold of 12% to issue an alert.
 
@@ -88,17 +86,23 @@ To run the Streamlit application on your local machine, follow these steps:
 
 ### 1. Clone the repository:
 
+```bash
 git clone https://github.com/anboch/credit-fraud-detection.git
 cd credit-fraud-detection
+```
 
 ### 2. Set up a virtual environment and install dependencies:
 
+```bash
 python -m venv venv
 source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 pip install -r requirements.txt
+```
 
 ### 3. Run the Streamlit app:
 
+```bash
 streamlit run app.py
+```
 
 The application will open in your web browser.
