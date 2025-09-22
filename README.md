@@ -2,9 +2,9 @@
 
 This repository presents a comprehensive, production-ready solution for detecting fraudulent credit card transactions. Moving beyond a simple classification task, this project emphasizes a business-centric approach, from a strategic exploratory data analysis (EDA) to cost-sensitive threshold optimization and robustness testing, culminating in a live deployment via Streamlit.
 
-## https://credit-fraud-detection-2eezbh5cuipaatpsqqdpkg.streamlit.app/
+## [Live Application Demo](https://credit-fraud-detection-2eezbh5cuipaatpsqqdpkg.streamlit.app/)
 
-![Streamlit App Demo GIF](https://github.com/anboch/credit-fraud-detection/blob/2353641cabcf3d1beff0b5e82aecb43cbd4e5a58/readme_assets/gif_demo.gif)
+![Streamlit App Demo GIF](https://github.com/anboch/credit-fraud-detection/raw/main/readme_assets/gif_demo.gif)
 
 ## Strategic summary
 
@@ -65,14 +65,14 @@ Serialize the final model, pre-processing objects, and feature lists using jobli
 
 The exploratory analysis confirmed that fraud is not random noise but a pattern that can be learned. The most powerful signals were found in the anonymized PCA features, particularly V14, V4, and V12. The scatter plot below illustrates an example of how fraudulent transactions form a distinct, separable cluster with certain features, validating the choice of a non-linear model.
 
-![Fraud footprint](https://github.com/anboch/credit-fraud-detection/blob/2353641cabcf3d1beff0b5e82aecb43cbd4e5a58/readme_assets/fraud_footprint.png)
+![Fraud Footprint in V14-V4 Space](https://github.com/anboch/credit-fraud-detection/raw/main/readme_assets/fraud_footprint.png)
 
 ### From metric to impact: Cost-Sensitive thresholding
 
 A model's value is in its decisions. While the F1-score is a balanced metric, it treats false positives and false negatives equally. In fraud detection, a missed fraud (False Negative) is often far more costly than a false alarm (False Positive).
 By assigning a hypothetical administrative cost of €10 to each FP and using the actual transaction amount for each FN, we can calculate the net savings at every possible probability threshold. The analysis revealed that a threshold of 0.12 maximizes savings, a stark contrast to the F1-optimal threshold (near 1). This insight is critical for deploying the model in a real-world financial context.
 
-![Compare threshold](https://github.com/anboch/credit-fraud-detection/blob/2353641cabcf3d1beff0b5e82aecb43cbd4e5a58/readme_assets/compare_thresholds.png)
+![Comparison of F1-Optimal vs. Business-Optimal Thresholds](https://github.com/anboch/credit-fraud-detection/raw/main/readme_assets/compare_thresholds.png)
 
 ## Live demo usage
 
